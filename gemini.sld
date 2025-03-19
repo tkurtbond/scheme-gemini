@@ -21,16 +21,17 @@
   (cond-expand
     (chicken
 
-     (define gemini-error?
-       (condition-predicate 'gemini-error))
+     (begin
+       (define gemini-error?
+         (condition-predicate 'gemini-error))
 
-     (define gemini-error-response
-       (condition-property-accessor 'gemini-error 'response #f))
+       (define gemini-error-response
+         (condition-property-accessor 'gemini-error 'response #f))
 
-     (define (make-gemini-error response)
-       (make-property-condition 'gemini-error
-                                'message "Gemini request failed"
-                                'response response))))
+       (define (make-gemini-error response)
+         (make-property-condition 'gemini-error
+                                  'message "Gemini request failed"
+                                  'response response)))))
   (begin
 
     (define-record-type gemini-respose
